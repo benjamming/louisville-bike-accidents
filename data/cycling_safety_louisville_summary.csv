@@ -1,0 +1,73 @@
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1273 entries, 0 to 1272
+Data columns (total 54 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   Unnamed: 0                     1273 non-null   int64  
+ 1   MASTER FILE NUMBER             1273 non-null   int64  
+ 2   INVESTIGATING AGENCY           1273 non-null   object 
+ 3   LOCAL CODE                     1273 non-null   object 
+ 4   COLLISION STATUS CODE          1273 non-null   object 
+ 5   COUNTY NAME                    1273 non-null   int64  
+ 6   ROADWAY NUMBER                 563 non-null    object 
+ 7   BLOCK/HOUSE #                  131 non-null    object 
+ 8   ROADWAY NAME                   1264 non-null   object 
+ 9   ROADWAY SUFFIX                 1192 non-null   object 
+ 10  ROADWAY DIRECTION CODE         434 non-null    object 
+ 11  GPS LATITUDE DECIMAL           1273 non-null   float64
+ 12  GPS LONGITUDE DECIMAL          1273 non-null   float64
+ 13  MILEPOINT DERIVED              1207 non-null   float64
+ 14  COLLISION DATE                 1273 non-null   object 
+ 15  COLLISION TIME                 1273 non-null   int64  
+ 16  INTERSECTION ROADWAY #         199 non-null    object 
+ 17  INTERSECTION ROADWAY NAME      704 non-null    object 
+ 18  INTERSECTION ROADWAY SFX       645 non-null    object 
+ 19  BETWEEN STREET ROADWAY # 1     58 non-null     object 
+ 20  BETWEEN STREET ROADWAY NAME 1  299 non-null    object 
+ 21  BETWEEN STREET ROADWAY SFX 1   290 non-null    object 
+ 22  BETWEEN STREET ROADWAY # 2     52 non-null     object 
+ 23  BETWEEN STREET ROADWAY NAME 2  299 non-null    object 
+ 24  BETWEEN STREET ROADWAY SFX 2   282 non-null    object 
+ 25  UNITS INVOLVED                 1273 non-null   int64  
+ 26  MOTOR VEHICLES INVOLVED        1273 non-null   int64  
+ 27  KILLED                         1273 non-null   int64  
+ 28  INJURED                        1273 non-null   int64  
+ 29  WEATHER CODE                   1273 non-null   float64
+ 30  WEATHER                        1273 non-null   object 
+ 31  ROADWAY CONDITION CODE         1273 non-null   float64
+ 32  ROADWAY CONDITION              1273 non-null   object 
+ 33  HIT & RUN INDICATOR            1273 non-null   object 
+ 34  ROADWAY TYPE CODE              1269 non-null   float64
+ 35  ROADWAY TYPE                   1269 non-null   object 
+ 36  DIRECTIONAL ANALYSIS CODE      1273 non-null   float64
+ 37  DIRECTIONAL ANALYSIS           1273 non-null   object 
+ 38  MANNER OF COLLISION CODE       1273 non-null   float64
+ 39  MANNER OF COLLISION            1273 non-null   object 
+ 40  ROADWAY CHARACTER CODE         1273 non-null   float64
+ 41  ROADWAY CHARACTER              1273 non-null   object 
+ 42  LIGHT CONDITION CODE           1273 non-null   float64
+ 43  LIGHT CONDITION                1273 non-null   object 
+ 44  RAMP FROM ROADWAY ID           0 non-null      float64
+ 45  RAMP TO ROADWAY ID             0 non-null      float64
+ 46  SECONDARY COLLISION INDICATOR  1201 non-null   object 
+ 47  hour                           1273 non-null   int64  
+ 48  minute                         1273 non-null   int64  
+ 49  Date                           1273 non-null   object 
+ 50  Latitude                       1273 non-null   float64
+ 51  Longitude                      1273 non-null   float64
+ 52  geometry                       1273 non-null   object 
+ 53  index_right                    1273 non-null   int64  
+dtypes: float64(14), int64(11), object(29)
+memory usage: 537.2+ KB
+
+---------------------------------
+
+,Unnamed: 0,MASTER FILE NUMBER,COUNTY NAME,GPS LATITUDE DECIMAL,GPS LONGITUDE DECIMAL,MILEPOINT DERIVED,COLLISION TIME,UNITS INVOLVED,MOTOR VEHICLES INVOLVED,KILLED,INJURED,WEATHER CODE,ROADWAY CONDITION CODE,ROADWAY TYPE CODE,DIRECTIONAL ANALYSIS CODE,MANNER OF COLLISION CODE,ROADWAY CHARACTER CODE,LIGHT CONDITION CODE,RAMP FROM ROADWAY ID,RAMP TO ROADWAY ID,hour,minute,Latitude,Longitude,index_right
+count,1273.0,1273.0,1273.0,1273.0,1273.0,1207.0,1273.0,1273.0,1273.0,1273.0,1273.0,1273.0,1273.0,1269.0,1273.0,1273.0,1273.0,1273.0,0.0,0.0,1273.0,1273.0,1273.0,1273.0,1273.0
+mean,117609.67321288296,67448798.40219952,56.0,38.21725829915632,-85.73461202328829,4.0370190555095276,4376.588373919874,2.014925373134328,1.0235663786331501,0.00864100549882168,0.7101335428122545,2.446190102120974,1.310290652003142,6.06855791962175,17.644147682639435,8.524744697564808,5.6229379418695995,2.5805184603299294,,,13.956009426551454,25.50903377847604,38.21725829915632,-85.73461202328829,0.0
+std,70619.88444388712,16138729.167702867,0.0,0.04421109953361493,0.07521271965235472,6.485810044944725,16789.58039751948,0.15025245503505993,0.1712261750424228,0.09259089083519417,0.5047255288875209,2.8260029140328364,1.0685745488258624,11.599012639537019,17.40815518829993,1.8122292775538955,1.0082249066258626,1.2444836953911782,,,5.4862275052083636,18.856253365082832,0.04421109953361493,0.07521271965235472,0.0
+min,306.0,47568.0,56.0,38.0607204,-85.8972811,0.0,0.0,1.0,1.0,0.0,0.0,1.0,1.0,1.0,2.0,1.0,1.0,1.0,,,0.0,0.0,38.0607204,-85.8972811,0.0
+25%,54980.0,71037233.0,56.0,38.1942575,-85.7836088,0.3125,1151.0,2.0,1.0,0.0,0.0,2.0,1.0,5.0,2.0,9.0,6.0,2.0,,,11.0,8.0,38.1942575,-85.7836088,0.0
+50%,111245.0,71335894.0,56.0,38.2312075,-85.7545663,1.17,1546.0,2.0,1.0,0.0,1.0,2.0,1.0,5.0,2.0,9.0,6.0,2.0,,,15.0,26.0,38.2312075,-85.7545663,0.0
+75%,174213.0,71649580.0,56.0,38.249566,-85.6889871,5.462,1835.0,2.0,1.0,0.0,1.0,2.0,1.0,5.0,37.0,9.0,6.0,2.0,,,18.0,41.0,38.249566,-85.6889871,0.0
+max,254898.0,72132863.0,56.0,38.3557108,-85.4143887,124.526,100009.0,4.0,3.0,1.0,5.0,97.0,6.0,99.0,37.0,9.0,6.0,7.0,,,23.0,59.0,38.3557108,-85.4143887,0.0

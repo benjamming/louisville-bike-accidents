@@ -1,0 +1,5 @@
+This work "Louisville Cycling Safety Data", is provided under Public Domain.
+The original data has been provided by "Kentucky State Police" with the name "Traffic collisions" and can be viewed online at <https://data.louisvilleky.gov/dataset/traffic-collisions> under the same license.
+You should have received a copy of the license along with this work. If not, please see <https://data.louisvilleky.gov/dataset/traffic-collisions>.
+The adapted version of the cycling safety data has been been created by Miguel Costa, Carlos Roque, Manuel Marques, and Filipe Moura.
+No warranties are given.
