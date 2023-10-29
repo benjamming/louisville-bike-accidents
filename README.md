@@ -11,4 +11,5 @@ visualization.ipynb
 
 data:
 
+Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv
 cycling_safety_louisville.csv
