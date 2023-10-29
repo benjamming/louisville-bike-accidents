@@ -15,5 +15,6 @@
 ### data:
 
 | file name | description |
+|-----------|-------------|
 | Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv | Crash reports from 2016-2023 (Updated regularly). This data was found on the Louisville Open Data portal. It includes reports of all crashes during its timeframe. This includes motor vehicle crashes and pedestrian incidents. |
 | cycling_safety_louisville.csv | Crash reports from 2010-2017. This data was part of a European study on cycling safety. |
