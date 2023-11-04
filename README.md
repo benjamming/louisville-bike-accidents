@@ -4,15 +4,19 @@
 
 ### code:
 
-| file name | description |
-|-----------|--------------|
+| phase | file name | description |
+|-------|-----------|-------------|
+|discovery|discovery_cycling_safety.ipynb| |
+|discovery|discovery_LOJIC.ipynb||
+
+
 |crash_discovery.ipynb| Jupyter notebook for data discovery |
 |crash_cleaning_script.py | Cleaning script for the crash records. This will clean and merge the datasets |
 |other_discovery.ipynb | I plan to bring in a few maps from LOJIC. I will inspect these here. "
 |analysis.ipynb | Jupyter notebook for my analysis|
 |visualization.ipynb | Jupyter notebook for testing visualizations. |
 
-### data:
+### raw data:
 
 | file name | description |
 |-----------|-------------|
