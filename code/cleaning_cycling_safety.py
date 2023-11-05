@@ -10,6 +10,7 @@ DATA_IN = "data/raw/cycling_safety_louisville.csv"
 DATA_OUT = "data/clean/cycling_safety_louisville_clean.csv"
 
 ### Defining groups of columns for various purposes.
+# With functions that will operate over them. 
 
 ## Columns to drop
 dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
@@ -70,6 +71,7 @@ def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
 
 
 ## Date/time section
+
 # define parsing expressions and parsers.
 integer = pyparsing.Word(pyparsing.nums).set_name("integer")
 # integer is a pyparsing.Word which consists of a string of characters in '0123456789'
@@ -88,7 +90,7 @@ def _parse_Date(date:str) -> dict:
     parsed = {key:int(value) for key, value in parsed.items()}
     return parsed
 
-# main date/time cleaning function
+# Main date/time cleaning function
 def clean_date_columns(df:pd.DataFrame) -> pd.DataFrame:
     log.info("Dropping unused date/time columns")
     df = df.drop(['hour', 'minute', 'COLLISION DATE', 'COLLISION TIME'], axis=1)
@@ -106,7 +108,7 @@ def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
 
 
 
-# main cleaning function
+### Main cleaning function
 def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_unused_columns(df, dropping_columns)
     df = rename_columns(df, renames)
@@ -115,7 +117,8 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-# main script function
+
+### Main script function
 def main():
     df = pd.read_csv(DATA_IN)
     df_clean = clean(df)
