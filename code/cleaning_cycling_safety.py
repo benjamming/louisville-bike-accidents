@@ -12,14 +12,15 @@ DATA_OUT = "data/clean/cycling_safety_louisville_clean.csv"
 ### Defining groups of columns for various purposes.
 
 ## Columns to drop
-dropping_columns = ['Unnamed: 0', 'COUNTY NAME',
+dropping_columns = ['COUNTY NAME',
                      'GPS LATITUDE DECIMAL', 'GPS LONGITUDE DECIMAL',
                     'geometry', 'index_right']
 
 def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
     """Drop a list of unneccessary columns from the dataframe."""
     log.info("Dropping unnecessary columns.")
-    return df.drop(columns, axis=1)
+    out = df.drop(columns, axis=1)
+    return out
 
 
 ## Renaming section
@@ -97,6 +98,12 @@ def clean_date_columns(df:pd.DataFrame) -> pd.DataFrame:
     return out.drop('Date', axis=1)
 
 
+## Boolean indicators section
+def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
+    for name in ['hit_and_run', 'secondary_collision']:
+        df[name] = df[name].apply(lambda x:True if x == "Y" else False)
+    return df
+
 
 
 # main cleaning function
@@ -104,6 +111,7 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_unused_columns(df, dropping_columns)
     df = rename_columns(df, renames)
     df = clean_date_columns(df)
+    df = clean_boolean_indicators(df)
 
     return df
 
