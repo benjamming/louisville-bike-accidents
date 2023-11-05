@@ -63,3 +63,18 @@ renames = {'IncidentID': "incident_id",
             'RampToRdwyId' : "ramp_to_roadway_id", 
             'IsSecondaryCollision' : "secondary_collision", 
             'ObjectId' : "object_id"}
+
+def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
+    return df.rename(renames, axis=1)
+
+def clean(df:pd.DataFrame) -> pd.DataFrame:
+    df = drop_unused_columns(df, dropping)
+    df = select_mode_BICYCLE(df)
+    df = rename_columns(df, renames)
+
+    return df
+
+if __name__ == "__main__":
+    df = pd.read_csv(DATA_IN)
+    df_clean = clean(df)
+    df_clean.to_csv(DATA_OUT)
