@@ -12,7 +12,7 @@ DATA_OUT = "data/clean/cycling_safety_louisville_clean.csv"
 ### Defining groups of columns for various purposes.
 
 ## Columns to drop
-dropping_columns = ['COUNTY NAME',
+dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
                      'GPS LATITUDE DECIMAL', 'GPS LONGITUDE DECIMAL',
                     'geometry', 'index_right']
 
