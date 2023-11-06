@@ -75,7 +75,7 @@ def expand_severity_column(df:pd.DataFrame) -> pd.DataFrame:
     fatalities.name = "fatality_indicator"
     injuries.name = "injury_indicator"
     out =  pd.concat((df, fatalities, injuries), axis=1)
-    out.drop("SEVERITY", axis=1)
+    out = out.drop("SEVERITY", axis=1)
     return out
 
 # Fix time date mess
