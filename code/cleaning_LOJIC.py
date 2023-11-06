@@ -89,11 +89,15 @@ time_expr_seconds = pyparsing.Literal(":") + integer("second") + "+" + integer("
 
 CollisionDate_expr = date_expr + time_expr_HHMM + time_expr_seconds.suppress()
 
-def fix_CollisionDate(string):
+def fix_CollisionDate_value(string):
     CD = CollisionDate_expr.parse_string(string).as_dict()
-    CD = {key:int(value) for key, value in CD}
-    timestamp =  pd.Timestamp(**CollisionDate_expr.parse_string(string).as_dict())
+    CD = {key:int(value) for key, value in CD.items()}
+    timestamp =  pd.Timestamp(**CD)
     return timestamp.tz_localize("UTC").tz_convert("US/Eastern")
+
+def fix_CollisionDate(df:pd.DataFrame) -> pd.DataFrame:
+    df['CollisionDate'] = df['CollisionDate'].apply(fix_CollisionDate_value)
+    return df
 
 
 
@@ -101,6 +105,7 @@ def fix_CollisionDate(string):
 def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_rows_and_columns(df)
     df = expand_severity_column(df)
+    df = fix_CollisionDate(df)
 
     df = rename_columns(df, renames) # Do this last. Too annoying to deal with before.
 
