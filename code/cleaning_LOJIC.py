@@ -60,8 +60,7 @@ renames = {'IncidentID': "incident_id",
             'LightCondition' : "light_condition",
             'IsSecondaryCollision' : "secondary_collision", 
             'ObjectId' : "object_id",
-            "MODE":"mode",
-            "SEVERITY" : "severity"}
+            "MODE":"mode",}
 
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
     return df.rename(renames, axis=1)
@@ -75,7 +74,9 @@ def expand_severity_column(df:pd.DataFrame) -> pd.DataFrame:
 
     fatalities.name = "fatality_indicator"
     injuries.name = "injury_indicator"
-    return pd.concat((df, fatalities, injuries), axis=1)
+    out =  pd.concat((df, fatalities, injuries), axis=1)
+    out.drop("SEVERITY", axis=1)
+    return out
 
 # Fix time date mess
 
