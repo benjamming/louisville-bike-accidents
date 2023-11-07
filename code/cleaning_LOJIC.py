@@ -47,8 +47,6 @@ renames = {'IncidentID': "incident_id",
             'Milepoint' : 'milepoint',
             'DAY_OF_WEEK' : 'day_of_week', 
             'CollisionDate' : 'collision_date', 
-            'CollisionTime' : 'collision_time', 
-            'HOUR_OF_DAY' : 'hour_of_day',
             'UnitsInvolved' : 'units_involved', 
             'MotorVehiclesInvolved' : "motor_vehicles_involved", 
             'Weather' : "weather",
@@ -100,16 +98,16 @@ def fix_CollisionDate(df:pd.DataFrame) -> pd.DataFrame:
     df['CollisionDate'] = df['CollisionDate'].apply(fix_CollisionDate_value)
     return df
 
-
+def fix_timedate_mess(df:pd.DataFrame) -> pd.DataFrame:
+    df = fix_CollisionDate(df)
+    return df.drop(['CollisionTime', 'HOUR_OF_DAY'], axis=1)
 
 
 def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_rows_and_columns(df)
     df = expand_severity_column(df)
-    df = fix_CollisionDate(df)
-
+    df = fix_timedate_mess(df)
     df = rename_columns(df, renames) # Do this last. Too annoying to deal with before.
-
     return df
 
 if __name__ == "__main__":
