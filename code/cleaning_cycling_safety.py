@@ -15,32 +15,57 @@ DATA_OUT = "data/clean/cycling_safety_louisville_clean.csv"
 ## Columns to drop
 dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
                      'GPS LATITUDE DECIMAL', 'GPS LONGITUDE DECIMAL',
-                    'geometry', 'index_right']
+                    'geometry', 'index_right',
+                    'hour', 'minute', 'COLLISION DATE', 'COLLISION TIME']
 
 def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
     """Drop a list of unneccessary columns from the dataframe."""
     log.info("Dropping unnecessary columns.")
-    out = df.drop(columns, axis=1)
-    return out
+    return df.drop(columns, axis=1)
 
 
 ## Renaming section
 # Lists of columns to rename
-easy_column_renames = ['MASTER FILE NUMBER', 'INVESTIGATING AGENCY', 'LOCAL CODE', 'COLLISION STATUS CODE',
-     'ROADWAY NUMBER', 'ROADWAY NAME', 'ROADWAY SUFFIX', 'INTERSECTION ROADWAY NAME',
-    'UNITS INVOLVED', 'MOTOR VEHICLES INVOLVED', 'KILLED', 'INJURED', 'WEATHER CODE',
-    'WEATHER', 'ROADWAY CONDITION CODE', 'ROADWAY CONDITION', 'ROADWAY TYPE CODE', 'ROADWAY TYPE',
-    'DIRECTIONAL ANALYSIS CODE', 'DIRECTIONAL ANALYSIS',
-    'MANNER OF COLLISION CODE', 'MANNER OF COLLISION',
-    'ROADWAY CHARACTER CODE', 'ROADWAY CHARACTER', 'LIGHT CONDITION CODE',
-    'LIGHT CONDITION', 'RAMP FROM ROADWAY ID', 'RAMP TO ROADWAY ID', "Latitude", "Longitude",
-    ]
-
-less_easy_column_renames = [
-     'INTERSECTION ROADWAY #', 'INTERSECTION ROADWAY SFX', 'BETWEEN STREET ROADWAY # 1',
-    'BETWEEN STREET ROADWAY NAME 1', 'BETWEEN STREET ROADWAY SFX 1',
-    'BETWEEN STREET ROADWAY # 2', 'BETWEEN STREET ROADWAY NAME 2',
-    'BETWEEN STREET ROADWAY SFX 2',]
+column_renames = {'MASTER FILE NUMBER': 'master_file_number',
+ 'INVESTIGATING AGENCY': 'investigating_agency',
+ 'LOCAL CODE': 'local_code',
+ 'COLLISION STATUS CODE': 'collision_status_code',
+ 'ROADWAY NUMBER': 'roadway_number',
+ 'ROADWAY NAME': 'roadway_name',
+ 'ROADWAY SUFFIX': 'roadway_suffix',
+ 'INTERSECTION ROADWAY NAME': 'intersection_roadway_name',
+ 'UNITS INVOLVED': 'units_involved',
+ 'MOTOR VEHICLES INVOLVED': 'motor_vehicles_involved',
+ 'KILLED': 'killed',
+ 'INJURED': 'injured',
+ 'WEATHER CODE': 'weather_code',
+ 'WEATHER': 'weather',
+ 'ROADWAY CONDITION CODE': 'roadway_condition_code',
+ 'ROADWAY CONDITION': 'roadway_condition',
+ 'ROADWAY TYPE CODE': 'roadway_type_code',
+ 'ROADWAY TYPE': 'roadway_type',
+ 'DIRECTIONAL ANALYSIS CODE': 'directional_analysis_code',
+ 'DIRECTIONAL ANALYSIS': 'directional_analysis',
+ 'MANNER OF COLLISION CODE': 'manner_of_collision_code',
+ 'MANNER OF COLLISION': 'manner_of_collision',
+ 'ROADWAY CHARACTER CODE': 'roadway_character_code',
+ 'ROADWAY CHARACTER': 'roadway_character',
+ 'LIGHT CONDITION CODE': 'light_condition_code',
+ 'LIGHT CONDITION': 'light_condition',
+ 'RAMP FROM ROADWAY ID': 'ramp_from_roadway_id',
+ 'RAMP TO ROADWAY ID': 'ramp_to_roadway_id',
+ 'Latitude': 'latitude',
+ 'Longitude': 'longitude',
+ 'Date': 'date',
+ 'INTERSECTION ROADWAY #': 'intersection_roadway_number',
+ 'INTERSECTION ROADWAY SFX': 'intersection_roadway_suffix',
+ 'BETWEEN STREET ROADWAY # 1': 'between_street_number_1',
+ 'BETWEEN STREET ROADWAY NAME 1': 'between_street_name_1',
+ 'BETWEEN STREET ROADWAY SFX 1': 'between_street_suffix_1',
+ 'BETWEEN STREET ROADWAY # 2': 'between_street_number_2',
+ 'BETWEEN STREET ROADWAY NAME 2': 'between_street_name_2',
+ 'BETWEEN STREET ROADWAY SFX 2': 'between_street_suffix_2'
+ }
 
 misc_column_renames = {
     'BLOCK/HOUSE #': "building_number",
@@ -49,19 +74,7 @@ misc_column_renames = {
     'HIT & RUN INDICATOR': "hit_and_run",
     'SECONDARY COLLISION INDICATOR': "secondary_collision"}
 
-# renaming utility functions
-def _easy_rename(name:str) -> str:
-    return name.replace(" ", "_").lower()
-
-def _less_easy_rename(name:str) -> str:
-    name = name.replace("STREET ROADWAY", "street")
-    name = name.replace("#", 'number').replace("SFX", 'suffix')
-    return _easy_rename(name)
-
-# create a master dictionary of column names with their new renames
-renames = {name:_easy_rename(name) for name in easy_column_renames}
-renames.update({name:_less_easy_rename(name) for name in less_easy_column_renames})
-renames.update(misc_column_renames)
+column_renames.update(misc_column_renames)
 
 # main function to rename columns
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
@@ -85,24 +98,21 @@ date_expr = (integer("year") + '-' + integer("month") + '-' + integer("day") +
 # integer("second").suppress() ignores the seconds part of the time substring
 # I don't need second-level precision for my analysis, and I doubt it's reliable anyway.
 
-def _parse_Date(date:str) -> dict:
+def parse_Date(date:str) -> dict:
     parsed = date_expr.parse_string(date).as_dict()
     parsed = {key:int(value) for key, value in parsed.items()}
-    return parsed
+    return pd.Timestamp(**parsed)
 
 # Main date/time cleaning function
 def clean_date_columns(df:pd.DataFrame) -> pd.DataFrame:
-    log.info("Dropping unused date/time columns")
-    df = df.drop(['hour', 'minute', 'COLLISION DATE', 'COLLISION TIME'], axis=1)
     log.info("Parsing Date column and adding clean information to dataframe")
-    parsed_df = pd.DataFrame(df['Date'].apply(_parse_Date).to_list())
-    out = pd.concat([df, parsed_df], axis=1)
-    return out.drop('Date', axis=1)
+    df['Date'] = df['Date'].apply(parse_Date)
+    return df
 
 
 ## Boolean indicators section
 def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
-    for name in ['hit_and_run', 'secondary_collision']:
+    for name in ["HIT & RUN INDICATOR", 'SECONDARY COLLISION INDICATOR']:
         df[name] = df[name].apply(lambda x:True if x == "Y" else False)
     return df
 
@@ -111,9 +121,9 @@ def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
 ### Main cleaning function
 def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_unused_columns(df, dropping_columns)
-    df = rename_columns(df, renames)
     df = clean_date_columns(df)
     df = clean_boolean_indicators(df)
+    df = rename_columns(df, column_renames)
 
     return df
 
@@ -122,7 +132,7 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
 def main():
     df = pd.read_csv(DATA_IN)
     df_clean = clean(df)
-    df_clean.to_csv(DATA_OUT)
+    df_clean.to_csv(DATA_OUT, index=0)
 
 if __name__ == "__main__":
     main()

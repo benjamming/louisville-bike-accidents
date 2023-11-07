@@ -46,7 +46,7 @@ renames = {'IncidentID': "incident_id",
             'Longitude' : 'longitude', 
             'Milepoint' : 'milepoint',
             'DAY_OF_WEEK' : 'day_of_week', 
-            'CollisionDate' : 'collision_date', 
+            'CollisionDate' : 'date', 
             'UnitsInvolved' : 'units_involved', 
             'MotorVehiclesInvolved' : "motor_vehicles_involved", 
             'Weather' : "weather",
@@ -113,4 +113,4 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     df = pd.read_csv(DATA_IN)
     df_clean = clean(df)
-    df_clean.to_csv(DATA_OUT)
+    df_clean.to_csv(DATA_OUT, index=0)
