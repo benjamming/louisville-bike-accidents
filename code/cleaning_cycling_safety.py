@@ -117,6 +117,13 @@ def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
         df[name] = df[name].apply(lambda x:True if x == "Y" else False)
     return df
 
+## Fix BLOCK/HOUSE #  (building_number in cleaned data)
+def clean_building_number(df:pd.DataFrame) -> pd.DataFrame:
+    building_numbers = df['BLOCK/HOUSE #']
+    building_numbers = building_numbers.replace(to_replace='     ', value=pd.NA)
+    building_numbers = building_numbers.dropna().apply(lambda x:str(int(float(x))))
+    df['BLOCK/HOUSE #'].update(building_numbers)
+    return df
 
 
 ### Main cleaning function
@@ -124,6 +131,7 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_unused_columns(df, dropping_columns)
     df = clean_date_columns(df)
     df = clean_boolean_indicators(df)
+    df = clean_building_number(df)
     df = rename_columns(df, column_renames)
 
     return df
