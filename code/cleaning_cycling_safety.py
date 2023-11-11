@@ -102,7 +102,8 @@ date_expr = (integer("year") + '-' + integer("month") + '-' + integer("day") +
 def parse_Date(date:str) -> dict:
     parsed = date_expr.parse_string(date).as_dict()
     parsed = {key:int(value) for key, value in parsed.items()}
-    return pd.Timestamp(**parsed)
+    return pd.Timestamp(**parsed, tz="US/Eastern") # add timezone info to the timestamps
+                                                    # makes it compatible with other data
 
 # Main date/time cleaning function
 def clean_date_columns(df:pd.DataFrame) -> pd.DataFrame:
