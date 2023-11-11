@@ -125,6 +125,11 @@ def clean_building_number(df:pd.DataFrame) -> pd.DataFrame:
     df['BLOCK/HOUSE #'].update(building_numbers)
     return df
 
+## Make fatality_indicator, injury indicator columns
+def make_indicator_columns(df:pd.DataFrame) -> pd.DataFrame:
+    ...
+    return df
+
 
 ### Main cleaning function
 def clean(df:pd.DataFrame) -> pd.DataFrame:
@@ -132,6 +137,7 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = clean_date_columns(df)
     df = clean_boolean_indicators(df)
     df = clean_building_number(df)
+
     df = rename_columns(df, column_renames)
 
     return df
