@@ -17,7 +17,11 @@ dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
                      'GPS LATITUDE DECIMAL', 'GPS LONGITUDE DECIMAL',
                     'geometry', 'index_right',
                     'hour', 'minute', 'COLLISION DATE', 'COLLISION TIME',
-                    "RAMP TO ROADWAY ID", "RAMP FROM ROADWAY ID"]
+                    "RAMP TO ROADWAY ID", "RAMP FROM ROADWAY ID",
+                    'WEATHER CODE', 'COLLISION STATUS CODE',
+                    'ROADWAY CONDITION CODE', 'ROADWAY TYPE CODE',
+                    'DIRECTIONAL ANALYSIS CODE','MANNER OF COLLISION CODE',
+                     'ROADWAY CHARACTER CODE', 'LIGHT CONDITION CODE'  ]
 
 def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
     """Drop a list of unneccessary columns from the dataframe."""
@@ -30,7 +34,7 @@ def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
 column_renames = {'MASTER FILE NUMBER': 'master_file_number',
                 'INVESTIGATING AGENCY': 'investigating_agency',
                 'LOCAL CODE': 'local_code',
-                'COLLISION STATUS CODE': 'collision_status_code',
+                #'COLLISION STATUS CODE': 'collision_status_code',
                 'ROADWAY NUMBER': 'roadway_number',
                 'ROADWAY NAME': 'roadway_name',
                 'ROADWAY SUFFIX': 'roadway_suffix',
@@ -39,19 +43,19 @@ column_renames = {'MASTER FILE NUMBER': 'master_file_number',
                 'MOTOR VEHICLES INVOLVED': 'motor_vehicles_involved',
                 'KILLED': 'killed',
                 'INJURED': 'injured',
-                'WEATHER CODE': 'weather_code',
+                #'WEATHER CODE': 'weather_code',
                 'WEATHER': 'weather',
-                'ROADWAY CONDITION CODE': 'roadway_condition_code',
+                #'ROADWAY CONDITION CODE': 'roadway_condition_code', #dropped
                 'ROADWAY CONDITION': 'roadway_condition',
-                'ROADWAY TYPE CODE': 'roadway_type_code',
+                #'ROADWAY TYPE CODE': 'roadway_type_code', #dropped
                 'ROADWAY TYPE': 'roadway_type',
-                'DIRECTIONAL ANALYSIS CODE': 'directional_analysis_code',
+                #'DIRECTIONAL ANALYSIS CODE': 'directional_analysis_code', #dropped
                 'DIRECTIONAL ANALYSIS': 'directional_analysis',
-                'MANNER OF COLLISION CODE': 'manner_of_collision_code',
+                #'MANNER OF COLLISION CODE': 'manner_of_collision_code',
                 'MANNER OF COLLISION': 'manner_of_collision',
-                'ROADWAY CHARACTER CODE': 'roadway_character_code',
+                #'ROADWAY CHARACTER CODE': 'roadway_character_code',
                 'ROADWAY CHARACTER': 'roadway_character',
-                'LIGHT CONDITION CODE': 'light_condition_code',
+                #'LIGHT CONDITION CODE': 'light_condition_code',
                 'LIGHT CONDITION': 'light_condition',
                 #'RAMP FROM ROADWAY ID': 'ramp_from_roadway_id', #dropped
                 #'RAMP TO ROADWAY ID': 'ramp_to_roadway_id', # dropped
@@ -80,6 +84,7 @@ column_renames.update(misc_column_renames)
 # main function to rename columns
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
     """Rename dataframe columns according to renames dictionary."""
+    # Run last. Other functions depend on original column names.
     log.info("Renaming columns.")
     return df.rename(renames, axis=1)
 
@@ -126,10 +131,25 @@ def clean_building_number(df:pd.DataFrame) -> pd.DataFrame:
     df['BLOCK/HOUSE #'].update(building_numbers)
     return df
 
+def clean_trailing_whitespace_columns(df:pd.DataFrame) -> pd.DataFrame:
+    columns = ['ROADWAY SUFFIX', 'ROADWAY DIRECTION CODE', 'INTERSECTION ROADWAY #', 'ROADWAY NUMBER']
+    for column in columns:
+        df[column] = df[column].str.strip()
+    return df
+
 ## Make fatality_indicator, injury indicator columns
 def make_indicator_columns(df:pd.DataFrame) -> pd.DataFrame:
-    ...
+    df['injury_indicator'] = df['INJURED'].apply(lambda x:bool(x > 0))
+    df['fatality_indicator'] = df['KILLED'].apply(lambda x:bool(x > 0))
     return df
+
+## Make day_of_week column
+def make_day_of_week(df:pd.DataFrame) -> pd.DataFrame:
+    # must be run *after* clean_date_columns
+    df['day_of_week'] = df['Date'].apply(lambda x:x.day_name().upper())
+    return df
+
+
 
 
 ### Main cleaning function
@@ -138,6 +158,9 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = clean_date_columns(df)
     df = clean_boolean_indicators(df)
     df = clean_building_number(df)
+    df = clean_trailing_whitespace_columns(df)
+    df = make_indicator_columns(df)
+    df = make_day_of_week(df)
 
     df = rename_columns(df, column_renames)
 
