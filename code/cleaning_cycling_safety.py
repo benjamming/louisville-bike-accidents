@@ -21,7 +21,8 @@ dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
                     'WEATHER CODE', 'COLLISION STATUS CODE',
                     'ROADWAY CONDITION CODE', 'ROADWAY TYPE CODE',
                     'DIRECTIONAL ANALYSIS CODE','MANNER OF COLLISION CODE',
-                     'ROADWAY CHARACTER CODE', 'LIGHT CONDITION CODE'  ]
+                     'ROADWAY CHARACTER CODE', 'LIGHT CONDITION CODE',
+                       'MASTER FILE NUMBER', 'LOCAL CODE' ]
 
 def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
     """Drop a list of unneccessary columns from the dataframe."""
@@ -31,9 +32,9 @@ def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
 
 ## Renaming section
 # Lists of columns to rename
-column_renames = {'MASTER FILE NUMBER': 'master_file_number',
+column_renames = {#'MASTER FILE NUMBER': 'master_file_number', # dropped
                 'INVESTIGATING AGENCY': 'investigating_agency',
-                'LOCAL CODE': 'local_code',
+                #'LOCAL CODE': 'local_code', # dropped
                 #'COLLISION STATUS CODE': 'collision_status_code',
                 'ROADWAY NUMBER': 'roadway_number',
                 'ROADWAY NAME': 'roadway_name',
@@ -125,9 +126,8 @@ def clean_boolean_indicators(df:pd.DataFrame) -> pd.DataFrame:
 
 ## Fix BLOCK/HOUSE #  (building_number in cleaned data)
 def clean_building_number(df:pd.DataFrame) -> pd.DataFrame:
-    building_numbers = df['BLOCK/HOUSE #']
-    building_numbers = building_numbers.replace(to_replace='     ', value=pd.NA)
-    building_numbers = building_numbers.dropna().apply(lambda x:str(int(float(x))))
+    df['BLOCK/HOUSE #'] = df['BLOCK/HOUSE #'].replace(to_replace='     ', value=pd.NA)
+    building_numbers = df['BLOCK/HOUSE #'].dropna().apply(lambda x:str(int(float(x))))
     df['BLOCK/HOUSE #'].update(building_numbers)
     return df
 
@@ -149,7 +149,13 @@ def make_day_of_week(df:pd.DataFrame) -> pd.DataFrame:
     df['day_of_week'] = df['Date'].apply(lambda x:x.day_name().upper())
     return df
 
+def set_index(df:pd.DataFrame) -> pd.DataFrame:
+    return df.sort_values(by='Date').reset_index().drop('index', axis=1)
 
+def last_steps(df:pd.DataFrame) -> pd.DataFrame:
+    df = set_index(df)
+    df = rename_columns(df, column_renames)
+    return df
 
 
 ### Main cleaning function
@@ -162,7 +168,7 @@ def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = make_indicator_columns(df)
     df = make_day_of_week(df)
 
-    df = rename_columns(df, column_renames)
+    df = last_steps(df)
 
     return df
 

@@ -16,9 +16,12 @@ DATA_OUT = "data/clean/LOJIC_cycling_data.csv"
 # Drop unneeded columns
 # Select only rows which report bicycle crashes
 
+DROPPING = ["X", "Y", "NAME", "AGE", "GENDER", "LINK", 'RampFromRdwyId', 'RampToRdwyId', 
+            "IncidentID", "ObjectId", 
+            'COUNCIL_DISTRICT'] # Removing for now; bring back later if needed
+
 def drop_rows_and_columns(df:pd.DataFrame):
-    df = df.drop(["X", "Y", "NAME", "AGE", "GENDER", "LINK",
-                  'RampFromRdwyId', 'RampToRdwyId'], axis=1)
+    df = df.drop(DROPPING, axis=1)
     # Remove unneeded columns
     df = df[(df['MODE'] == "BICYCLE") | df["DirAnalysisCode"].str.contains("BICY") == True]
     return df
@@ -26,7 +29,7 @@ def drop_rows_and_columns(df:pd.DataFrame):
 
 # Columns to rename
 
-renames = {'IncidentID': "incident_id",
+column_renames = {#'IncidentID': "incident_id", # dropped
             'AgencyName' : "investigating_agency",
             'RdwyNumber' : "roadway_number", 
             'Street' : "building_number", 
@@ -35,7 +38,7 @@ renames = {'IncidentID': "incident_id",
             'StreetSfx' : "roadway_suffix",
             'OWNER' : "roadway_type", 
             'ROAD_CLASSIFICATION' : 'road_classification',
-            'COUNCIL_DISTRICT' : "council_district", 
+            #'COUNCIL_DISTRICT' : "council_district", # dropping until needed
             'IntersectionRdwy' : "intersection_roadway_number", 
             'IntersectionRdwyName' : "intersection_roadway_name",
             'BetweenStRdwy1' : 'between_street_number_1', 
@@ -57,10 +60,11 @@ renames = {'IncidentID': "incident_id",
             'RdwyCharacter' : 'roadway_character', 
             'LightCondition' : "light_condition",
             'IsSecondaryCollision' : "secondary_collision", 
-            'ObjectId' : "object_id",
+            #'ObjectId' : "object_id", # dropped
             "MODE":"mode",}
 
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
+    # Do this last. Other functions depend on original column names
     return df.rename(renames, axis=1)
 
 
@@ -102,12 +106,19 @@ def fix_timedate_mess(df:pd.DataFrame) -> pd.DataFrame:
     df = fix_CollisionDate(df)
     return df.drop(['CollisionTime', 'HOUR_OF_DAY'], axis=1)
 
+def set_index(df:pd.DataFrame) -> pd.DataFrame:
+    return df.sort_values(by='CollisionDate').reset_index().drop('index', axis=1)
+
+def last_steps(df:pd.DataFrame) -> pd.DataFrame:
+    df = set_index(df)
+    df = rename_columns(df, column_renames)
+    return df
 
 def clean(df:pd.DataFrame) -> pd.DataFrame:
     df = drop_rows_and_columns(df)
     df = expand_severity_column(df)
     df = fix_timedate_mess(df)
-    df = rename_columns(df, renames) # Do this last. Too annoying to deal with before.
+    df = last_steps(df)
     return df
 
 if __name__ == "__main__":
