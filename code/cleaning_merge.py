@@ -17,3 +17,7 @@ LOJIC = pd.read_csv(path_to_LOJIC_cleaned)
 def normalize_LOJIC_roadway_type() -> None: #NOT DONE
     LOJIC['roadway_type'] = LOJIC['roadway_type'].replace(
         {"SHIVELY":"LOCAL ROAD", "BROWNSBORO FARM":"LOCAL ROAD", "METRO":"LOCAL ROAD"})
+    
+def main():
+    normalize_LOJIC_roadway_type()
+    
