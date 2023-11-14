@@ -22,7 +22,8 @@ dropping_columns = ["Unnamed: 0", 'COUNTY NAME',
                     'ROADWAY CONDITION CODE', 'ROADWAY TYPE CODE',
                     'DIRECTIONAL ANALYSIS CODE','MANNER OF COLLISION CODE',
                      'ROADWAY CHARACTER CODE', 'LIGHT CONDITION CODE',
-                       'MASTER FILE NUMBER', 'LOCAL CODE' ]
+                       'MASTER FILE NUMBER', 'LOCAL CODE',
+                    'INTERSECTION ROADWAY SFX', 'BETWEEN STREET ROADWAY SFX 1', 'BETWEEN STREET ROADWAY SFX 2' ]
 
 def drop_unused_columns(df:pd.DataFrame, columns:list) -> pd.DataFrame:
     """Drop a list of unneccessary columns from the dataframe."""
@@ -63,14 +64,15 @@ column_renames = {#'MASTER FILE NUMBER': 'master_file_number', # dropped
                 'Latitude': 'latitude',
                 'Longitude': 'longitude',
                 'Date': 'date',
+                    # Dropping SFX / suffix columns from these for now.
                 'INTERSECTION ROADWAY #': 'intersection_roadway_number',
-                'INTERSECTION ROADWAY SFX': 'intersection_roadway_suffix',
+                #'INTERSECTION ROADWAY SFX': 'intersection_roadway_suffix',
                 'BETWEEN STREET ROADWAY # 1': 'between_street_number_1',
                 'BETWEEN STREET ROADWAY NAME 1': 'between_street_name_1',
-                'BETWEEN STREET ROADWAY SFX 1': 'between_street_suffix_1',
+                #'BETWEEN STREET ROADWAY SFX 1': 'between_street_suffix_1',
                 'BETWEEN STREET ROADWAY # 2': 'between_street_number_2',
                 'BETWEEN STREET ROADWAY NAME 2': 'between_street_name_2',
-                'BETWEEN STREET ROADWAY SFX 2': 'between_street_suffix_2'
+                #'BETWEEN STREET ROADWAY SFX 2': 'between_street_suffix_2'
  }
 
 misc_column_renames = {

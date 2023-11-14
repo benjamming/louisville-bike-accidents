@@ -18,12 +18,15 @@ DATA_OUT = "data/clean/LOJIC_cycling_data.csv"
 
 DROPPING = ["X", "Y", "NAME", "AGE", "GENDER", "LINK", 'RampFromRdwyId', 'RampToRdwyId', 
             "IncidentID", "ObjectId", 
-            'COUNCIL_DISTRICT'] # Removing for now; bring back later if needed
+            'COUNCIL_DISTRICT', 'ROAD_CLASSIFICATION'] # Removing for now; bring back later if needed
 
 def drop_rows_and_columns(df:pd.DataFrame):
     df = df.drop(DROPPING, axis=1)
     # Remove unneeded columns
     df = df[(df['MODE'] == "BICYCLE") | df["DirAnalysisCode"].str.contains("BICY") == True]
+    # Select only rows that report bicycle accidents.
+    df = df.drop("MODE", axis=1)
+    # Drop MODE column as it is no longer needed
     return df
 
 
@@ -37,7 +40,7 @@ column_renames = {#'IncidentID': "incident_id", # dropped
             'RoadwayName' : "roadway_name", 
             'StreetSfx' : "roadway_suffix",
             'OWNER' : "roadway_type", 
-            'ROAD_CLASSIFICATION' : 'road_classification',
+            #'ROAD_CLASSIFICATION' : 'road_classification', # dropping. Can't do much with this. 
             #'COUNCIL_DISTRICT' : "council_district", # dropping until needed
             'IntersectionRdwy' : "intersection_roadway_number", 
             'IntersectionRdwyName' : "intersection_roadway_name",
@@ -53,7 +56,7 @@ column_renames = {#'IncidentID': "incident_id", # dropped
             'UnitsInvolved' : 'units_involved', 
             'MotorVehiclesInvolved' : "motor_vehicles_involved", 
             'Weather' : "weather",
-            'RdwyConditionCode' : "roadway_condition",
+            'RdwyConditionCode' : "roadway_condition", # dropped can't do much with this
             'HitandRun' : 'hit_and_run',
             'DirAnalysisCode' : 'directional_analysis',
             'MannerofCollision' : 'manner_of_collision', 
@@ -61,7 +64,8 @@ column_renames = {#'IncidentID': "incident_id", # dropped
             'LightCondition' : "light_condition",
             'IsSecondaryCollision' : "secondary_collision", 
             #'ObjectId' : "object_id", # dropped
-            "MODE":"mode",}
+            # "MODE":"mode", # dropped
+}
 
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
     # Do this last. Other functions depend on original column names
