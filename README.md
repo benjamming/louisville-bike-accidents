@@ -26,13 +26,13 @@ Jupyter notebooks for data discovery on this project's source data.
 
 ## Cleaning
 
-### /data/preclean
+### /data/preclean & /code/cleaning
 
 For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from that cleaning process.
 
 Run `python {cleaning file}` to generate a clean(er) CSV for each source file.
 
-| codename | clean CSV name | cleaning script |source file |
+| codename | clean CSV name: data/preclean/... | cleaning script code/cleaning/... |source file |
 |----------|----------------|-----------------|------------|
 | LOJIC | LOJIC_cycling_data.csv | cleaning/cleaning_LOJIC.py | data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv|
 | CSAFE | cycling_safety_louisville_clean.csv | cleaning_cycling_safety.py | data/raw/cycling_safety_louisville.csv |
