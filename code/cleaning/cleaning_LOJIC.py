@@ -9,7 +9,7 @@ from os import chdir
 chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
 
 DATA_IN = "data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
-DATA_OUT = "data/clean/LOJIC_cycling_data.csv"
+DATA_OUT = "data/preclean/LOJIC_cycling_data.csv"
 
 
 
