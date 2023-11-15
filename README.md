@@ -15,7 +15,7 @@ The source data for my project.
 
 For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from my cleaning process.
 
-Run `python {cleaning file} {source file} to generate clean CSV
+Run `python {cleaning file}` to generate clean CSV
 
 | clean CSV name | cleaning file |source file |
 |----------------|---------------|------------|
