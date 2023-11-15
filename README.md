@@ -1,5 +1,6 @@
 # louisville-bike-accidents
 
+## Source data
 ### /data/raw
 
 The source data for my project. 
@@ -12,13 +13,24 @@ Since I am dealing with multiple datasets, I use a short "codename" for each fil
 | CSAFE | cycling_safety_louisville.csv | Crash reports from 2010-2017. This data was part of a European study on cycling safety. |
 | SIGNALS | Jefferson_County_KY_Signalized_Intersections.csv | Road intersections in Jefferson County, KY with traffic lights. |
 
+## Discovery
+### `/code/discovery`
+
+Jupyter notebooks for data discovery on this project's source data.
+
+| codename | notebook name |
+|----------|---------------|
+| LOJIC | discovery_LOJIC.ipynb |
+| CSAFE | discovery_cycling_safety.ipynb |
+| SIGNALS | other_discovery.ipynb |
+
 ## Cleaning
 
 ### /data/preclean
 
-For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from my cleaning process.
+For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from that cleaning process.
 
-Run `python {cleaning file}` to generate clean CSV
+Run `python {cleaning file}` to generate a clean(er) CSV for each source file.
 
 | codename | clean CSV name | cleaning script |source file |
 |----------|----------------|-----------------|------------|
@@ -28,15 +40,7 @@ Run `python {cleaning file}` to generate clean CSV
 
 ### /data/clean
 
-## Discovery
-
-Jupyter notebooks for data discovery on this project's source data.
-
-| codename | notebook name |
-|----------|---------------|
-| LOJIC | discovery_LOJIC.ipynb |
-| CSAFE | discovery_cycling_safety.ipynb |
-| SIGNALS | other_discovery.ipynb |
+Final clean data I can use for analysis.
 
 ## Analysis
 
