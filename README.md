@@ -27,7 +27,7 @@ Jupyter notebooks for data discovery on this project's source data.
 ## Cleaning
 
 #### cleaning scripts directory: /code/cleaning
-#### precleaned data firectory: /data/preclean
+#### precleaned data directory: /data/preclean
 
 For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from that cleaning process.
 
