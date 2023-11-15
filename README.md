@@ -17,7 +17,7 @@ For each of the source datasets, I first did some cleaning to remove unwanted da
 
 Run `python {cleaning file}` to generate clean CSV
 
-| clean CSV name | cleaning file |source file |
+| clean CSV name | cleaning script |source file |
 |----------------|---------------|------------|
 | LOJIC_cycling_data | cleaning/cleaning_LOJIC.py |Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv|
 | cycling_safety_louisville_clean.csv | cleaning_cycling_safety.py | cycling_safety_louisville.csv |
