@@ -1,7 +1,7 @@
 # louisville-bike-accidents
 
 ## Source data
-#### directory: /data/raw
+### directory: /data/raw
 
 The source data for my project. 
 
@@ -14,7 +14,7 @@ Since I am dealing with multiple datasets, I use a short "codename" for each fil
 | SIGNALS | Jefferson_County_KY_Signalized_Intersections.csv | Road intersections in Jefferson County, KY with traffic lights. |
 
 ## Discovery
-#### directory: /code/discovery
+### directory: /code/discovery
 
 Jupyter notebooks for data discovery on this project's source data.
 
@@ -26,8 +26,8 @@ Jupyter notebooks for data discovery on this project's source data.
 
 ## Cleaning
 
-#### cleaning scripts directory: /code/cleaning
-#### precleaned data directory: /data/preclean
+### cleaning scripts directory: /code/cleaning
+### precleaned data directory: /data/preclean
 
 For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from that cleaning process.
 
@@ -39,7 +39,7 @@ Run `python {cleaning file}` to generate a clean(er) CSV for each source file.
 | CSAFE | cycling_safety_louisville_clean.csv | cleaning_cycling_safety.py | data/raw/cycling_safety_louisville.csv |
 | SIGNALS |signalized_intersections.csv | cleaning_signal_intersections.py | data/raw/Jefferson_County_KY_Signalized_Intersections.csv |
 
-### /data/clean
+### final cleaning steps: /data/clean
 
 Final clean data I can use for analysis.
 
