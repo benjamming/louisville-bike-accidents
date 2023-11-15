@@ -22,7 +22,7 @@ Run `python {cleaning file}` to generate clean CSV
 
 | codename | clean CSV name | cleaning script |source file |
 |----------|----------------|-----------------|------------|
-| LOJIC | LOJIC_cycling_data | cleaning/cleaning_LOJIC.py |Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv|
+| LOJIC | LOJIC_cycling_data | cleaning/cleaning_LOJIC.py | Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv|
 | CSAFE | cycling_safety_louisville_clean.csv | cleaning_cycling_safety.py | cycling_safety_louisville.csv |
 | SIGNALS |signalized_intersections.csv | cleaning_signal_intersections.py | Jefferson_County_KY_Signalized_Intersections.csv |
 
