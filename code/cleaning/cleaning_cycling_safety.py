@@ -43,8 +43,8 @@ column_renames = {#'MASTER FILE NUMBER': 'master_file_number', # dropped
                 'INTERSECTION ROADWAY NAME': 'intersection_roadway_name',
                 'UNITS INVOLVED': 'units_involved',
                 'MOTOR VEHICLES INVOLVED': 'motor_vehicles_involved',
-                'KILLED': 'killed',
-                'INJURED': 'injured',
+                #'KILLED': 'killed', # dropping this after creating fatality_indicator
+                #'INJURED': 'injured', # dropping this after creating injury_indicator
                 #'WEATHER CODE': 'weather_code',
                 'WEATHER': 'weather',
                 #'ROADWAY CONDITION CODE': 'roadway_condition_code', #dropped
@@ -79,8 +79,8 @@ misc_column_renames = {
     'BLOCK/HOUSE #': "building_number",
     'ROADWAY DIRECTION CODE': 'roadway_direction',
     'MILEPOINT DERIVED': 'milepoint', 
-    'HIT & RUN INDICATOR': "hit_and_run",
-    'SECONDARY COLLISION INDICATOR': "secondary_collision"}
+    'HIT & RUN INDICATOR': "hit_and_run_indicator",
+    'SECONDARY COLLISION INDICATOR': "secondary_collision_indicator"}
 
 column_renames.update(misc_column_renames)
 
@@ -143,7 +143,7 @@ def clean_trailing_whitespace_columns(df:pd.DataFrame) -> pd.DataFrame:
 def make_indicator_columns(df:pd.DataFrame) -> pd.DataFrame:
     df['injury_indicator'] = df['INJURED'].apply(lambda x:bool(x > 0))
     df['fatality_indicator'] = df['KILLED'].apply(lambda x:bool(x > 0))
-    return df
+    return df.drop(["KILLED", "INJURED"], axis=1) # Drop KILLED and INJURED
 
 ## Make day_of_week column
 def make_day_of_week(df:pd.DataFrame) -> pd.DataFrame:

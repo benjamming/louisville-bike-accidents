@@ -57,12 +57,12 @@ column_renames = {#'IncidentID': "incident_id", # dropped
             'MotorVehiclesInvolved' : "motor_vehicles_involved", 
             'Weather' : "weather",
             'RdwyConditionCode' : "roadway_condition", # dropped can't do much with this
-            'HitandRun' : 'hit_and_run',
+            'HitandRun' : 'hit_and_run_indicator',
             'DirAnalysisCode' : 'directional_analysis',
             'MannerofCollision' : 'manner_of_collision', 
             'RdwyCharacter' : 'roadway_character', 
             'LightCondition' : "light_condition",
-            'IsSecondaryCollision' : "secondary_collision", 
+            'IsSecondaryCollision' : "secondary_collision_indicator", 
             #'ObjectId' : "object_id", # dropped
             # "MODE":"mode", # dropped
 }
