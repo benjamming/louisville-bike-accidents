@@ -7,7 +7,7 @@ chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
 DATAIN = "data/raw/Jefferson_County_KY_Signalized_Intersections.csv"
 DATAOUT = "data/preclean/signalized_intersections.csv"
 
-dropping = ["OBJECTID", "UNITID", "SIGID", "OWNER2",
+dropping = ["UNITID", "SIGID", "OWNER2",
             "TIMES",  "DESCRIPTION", "INTID", "ATMSID"]
 
 renames = {"X":"longitude",
