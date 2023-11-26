@@ -33,7 +33,6 @@ def merge_accident_data() -> pd.DataFrame:
     out['id'] = out.index + 0
     return out
 
-
 def split_up_timestamps(df:pd.DataFrame) -> pd.DataFrame:
     dates = df['date'] = df['date'].apply(pd.Timestamp)
     timesplit = dates.transform({name:attrgetter(name) for name in "year month day hour minute".split()})
