@@ -8,7 +8,9 @@ from os import chdir
 
 chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
 
+# Raw data
 DATA_IN = "data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
+# Path to write CSV of cleaned data
 DATA_OUT = "data/preclean/LOJIC_cycling_data.csv"
 
 
@@ -21,12 +23,13 @@ DROPPING = ["X", "Y", "NAME", "AGE", "GENDER", "LINK", 'RampFromRdwyId', 'RampTo
             'COUNCIL_DISTRICT', 'ROAD_CLASSIFICATION'] # Removing for now; bring back later if needed
 
 def drop_rows_and_columns(df:pd.DataFrame):
-    df = df.drop(DROPPING, axis=1)
+    """Drop unneeded columns and rows from raw data"""
     # Remove unneeded columns
-    df = df[(df['MODE'] == "BICYCLE") | df["DirAnalysisCode"].str.contains("BICY") == True]
+    df = df.drop(DROPPING, axis=1)
     # Select only rows that report bicycle accidents.
+    df = df[(df['MODE'] == "BICYCLE") | df["DirAnalysisCode"].str.contains("BICY") == True]
     df = df.drop("MODE", axis=1)
-    # Drop MODE column as it is no longer needed
+    # Drop MODE column as it is no longer needed once only bike accidents have been selected
     return df
 
 
@@ -68,23 +71,33 @@ column_renames = {#'IncidentID': "incident_id", # dropped
 }
 
 def rename_columns(df:pd.DataFrame, renames:dict) -> pd.DataFrame:
+    """Rename columns according to column_renames dictionary"""
     # Do this last. Other functions depend on original column names
     return df.rename(renames, axis=1)
 
 
 # SEVERITY column
 def expand_severity_column(df:pd.DataFrame) -> pd.DataFrame:
-    severity = df['SEVERITY']
-    fatalities = severity.apply(lambda x:(x == "FATALITY"))
-    injuries = severity.apply(lambda x:(x == "SUSPECTED SERIOUS INJURY"))
+    """Expand SEVERITY column into two columns: fatality_indicator and injury_indicator
 
+    SEVERITY can have two values, indicating either a serious injury or a fatality.
+    I break this up into two columns for ease of analysis later."""
+    severity = df['SEVERITY']
+    # Get Series: df[SEVERITY == "FATALITY"]
+    fatalities = severity.apply(lambda x:(x == "FATALITY"))
+    # get Series: df[SEVERITY == "...INJURY"]
+    injuries = severity.apply(lambda x:(x == "SUSPECTED SERIOUS INJURY"))
     fatalities.name = "fatality_indicator"
     injuries.name = "injury_indicator"
+    # Add the new Series to the original data
     out =  pd.concat((df, fatalities, injuries), axis=1)
     out = out.drop("SEVERITY", axis=1)
+    # Drop SEVERITY column as it is now redundant. 
     return out
 
 # Fix time date mess
+# Raw data has times expressed as Universal Time / Greenwich Meantime, and we expect the times to
+# be Eastern Standard Time. This is causing conflicts between the various time columns in the data
 
 # Define some parsing expressions
 integer = pyparsing.Word(pyparsing.nums).set_name("integer")
