@@ -3,10 +3,9 @@
 import pandas as pd
 from numpy import intersect1d
 from operator import attrgetter
-from os import chdir, path
+from os import path
 from pandasql import sqldf
 
-chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
 
 # Bicycle accident data:
 path_to_cycling_safety_cleaned = "data/preclean/cycling_safety_louisville_cleaned.csv"

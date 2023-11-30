@@ -6,8 +6,6 @@ import pytz
 from datetime import datetime, timezone
 from os import chdir
 
-chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
-
 # Raw data
 DATA_IN = "data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
 # Path to write CSV of cleaned data

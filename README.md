@@ -20,7 +20,7 @@ Since I am dealing with multiple datasets, I use a short "codename" for each fil
 ## Discovery
 ### directory: /code/discovery
 
-Jupyter notebooks for data discovery on this project's source data. These notebooks can be run in any particular order. 
+Jupyter notebooks for data discovery on this project's source data. 
 
 | codename | notebook name |
 |----------|---------------|
