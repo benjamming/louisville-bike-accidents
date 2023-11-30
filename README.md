@@ -2,7 +2,12 @@
 
 ## Quick Start
 
+Create a virtual environment to install modules.
+Use pip install -r requirements.txt to install required modules.
+    Modules required: 
 Run the Python files in 02_cleaning directory.
+    The files prefixed by `01` can be run in any order, but these must be run before `02_merge_accident_data.py`. 
+Open and run `03_analysis.ipynb`
 
 ## Source data
 ### directory: /data/raw
@@ -55,4 +60,14 @@ The directory also includes data_dictionary.md, a markdown file with a data dict
 
 ## Analysis
 
+# Requirements
 
+These are the parts of my projects which satisfy the requirements for the Code:You / Code Louisville Data Analytics Pathway.
+
+| Requirement Section | |
+|---------------------|-|
+| 1. Loading data | |
+| 2. Clean and operate on data | |
+| 3. Visualize data || 
+| 4. Best practices ||
+| 5. Interpretation of data || 
