@@ -7,7 +7,7 @@ import os
 import logging as log
 
 DATA_IN = "data/raw/cycling_safety_louisville.csv"
-DATA_OUT = "data/preclean/cycling_safety_louisville_clean.csv"
+DATA_OUT = "data/preclean/cycling_safety_louisville_cleaned.csv"
 
 ### Defining groups of columns for various purposes.
 # With functions that will operate over them. 

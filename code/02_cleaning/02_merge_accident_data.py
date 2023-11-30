@@ -9,8 +9,8 @@ from pandasql import sqldf
 chdir("/Users/bencampbell/code_louisville/capstone/louisville-bike-accidents")
 
 # Bicycle accident data:
-path_to_cycling_safety_cleaned = "data/preclean/cycling_safety_louisville_clean.csv"
-path_to_LOJIC_cleaned = "data/preclean/LOJIC_cycling_data.csv"
+path_to_cycling_safety_cleaned = "data/preclean/cycling_safety_louisville_cleaned.csv"
+path_to_LOJIC_cleaned = "data/preclean/LOJIC_cycling_data_cleaned.csv"
 
 # Intersections with lighted traffic signals.
 path_to_signalized_intersections = "data/raw/Jefferson_County_KY_Signalized_Intersections.csv"
