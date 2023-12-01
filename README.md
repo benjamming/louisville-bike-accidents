@@ -11,14 +11,16 @@ The goal of my project is to determine the most dangerous conditions to ride bic
 1. Create a virtual environment to install modules.
 
     In a terminal, run `python -m venv venv`
+    
 
 1. Install requirements
 
-    In a terminal, run `pip install -r requirements.txt`
+    Activate the virtual environment by running `source venv/bin/activate`. This project was developed on a MacBook and a Linux machine. You may need to modify this line to work on Windows.
+    In the terminal, run `pip install -r requirements.txt` to install requied libraries.
 
 1. Run the cleaning scripts in `02_cleaning/` directory
 
-    To run these scripts, open a terminal and run `python {filename}`
+    To run these scripts, open a terminal and navigate to the `code/02_cleaning` directory, then run `python {filename}`
 
     The files prefixed by `01` can be run in any order, but these must be run before `02_merge_accident_data.py`. 
 
@@ -59,7 +61,7 @@ Jupyter notebooks for data discovery on this project's source data.
 #### cleaning scripts directory: /code/cleaning
 #### precleaned data directory: /data/preclean
 
-For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting .csv files from that cleaning process.
+For each of the source datasets, I first did some cleaning to remove unwanted data and make these easier to combine. This directory contains the resulting CSV files from that cleaning process.
 
 Run `python {cleaning file}` to generate a cleaner CSV for each source file. `01_cleaning_LOJIC.py` and `01_cleaning_cycling_safety.py` can be run in any order, but they must both be run before `02_merge_accident_data.py`
 
