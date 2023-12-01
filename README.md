@@ -1,6 +1,6 @@
 # Louisville Bike Accidents
 
-![Louisvile Open Data](https://www.arcgis.com/sharing/rest/content/items/105d192e2725465fa5ff70d163ca457a/resources/hub-image-card-crop-iij0khjwg.png?v=1701397518163)
+![Louisvile Open Data](https://www.arcgis.com/sharing/rest/content/items/105d192e2725465fa5ff70d163ca457a/resources/hub-image-card-crop-iij0khjwg.png?v=17013975)
 ![LOJIC](https://www.lojic.org/themes/custom/lojic/logo.svg)
 
 ### louisville-bike-accidents.git
