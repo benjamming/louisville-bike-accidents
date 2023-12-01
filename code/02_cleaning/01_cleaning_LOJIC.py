@@ -5,9 +5,9 @@ from os import path
 
 
 # Raw data
-DATA_IN = "../../data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
+DATA_IN = "data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
 # Path to write CSV of cleaned data
-DATA_OUT = "../../data/preclean/LOJIC_cycling_data_cleaned.csv"
+DATA_OUT = "data/preclean/LOJIC_cycling_data_cleaned.csv"
 
 assert path.exists(DATA_IN)
 

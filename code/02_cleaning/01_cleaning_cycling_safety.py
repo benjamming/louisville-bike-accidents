@@ -2,12 +2,12 @@
 
 import pandas as pd
 import pyparsing
-from os import path
+from os import path, chdir
 
 import logging as log
 
-DATA_IN = "../../data/raw/cycling_safety_louisville.csv"
-DATA_OUT = "../../data/preclean/cycling_safety_louisville_cleaned.csv"
+DATA_IN = "data/raw/cycling_safety_louisville.csv"
+DATA_OUT = "data/preclean/cycling_safety_louisville_cleaned.csv"
 
 assert path.exists(DATA_IN)
 

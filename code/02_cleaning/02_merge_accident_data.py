@@ -8,17 +8,17 @@ from pandasql import sqldf
 
 
 # Bicycle accident data:
-path_to_cycling_safety_cleaned = "../../data/preclean/cycling_safety_louisville_cleaned.csv"
-path_to_LOJIC_cleaned = "../../data/preclean/LOJIC_cycling_data_cleaned.csv"
+path_to_cycling_safety_cleaned = "data/preclean/cycling_safety_louisville_cleaned.csv"
+path_to_LOJIC_cleaned = "data/preclean/LOJIC_cycling_data_cleaned.csv"
 
 assert path.exists(path_to_cycling_safety_cleaned)
 assert path.exists(path_to_LOJIC_cleaned)
 
 # Intersections with lighted traffic signals.
-path_to_signalized_intersections = "../../data/raw/Jefferson_County_KY_Signalized_Intersections.csv"
+path_to_signalized_intersections = "data/raw/Jefferson_County_KY_Signalized_Intersections.csv"
 
 # Path to write CSV for combined data.
-CSV_OUT = "../../data/clean/bike_accidents.csv"
+CSV_OUT = "data/clean/bike_accidents.csv"
 
 
 def merge_accident_data() -> pd.DataFrame:
