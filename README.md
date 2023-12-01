@@ -64,10 +64,14 @@ The directory also includes data_dictionary.md, a markdown file with a data dict
 
 These are the parts of my projects which satisfy the requirements for the Code:You / Code Louisville Data Analytics Pathway.
 
-| Requirement Section | |
+| Requirement Section |  |
 |---------------------|-|
-| 1. Loading data | |
-| 2. Clean and operate on data | |
-| 3. Visualize data || 
-| 4. Best practices ||
-| 5. Interpretation of data || 
+| 1. Loading data | I have read in two CSV files to form the main base of my project. |
+| 2. Clean and operate on data | I have combined two datasets using pandas.concat to extend the time range for analysis.
+
+I have also brought in data from a third CSV file, and incorporated information into my final clean data, using SQL via the pandasql library. |
+| 3. Visualize data | Throughout my discovery notebooks and my analysis notebook I have included plots to visualize the data. | 
+| 4. Best practices | Virtual environment: I have included a requirements.txt file for setting up the venv. There are instructions in my README file under the heading "Quick Start" for setting up the environment. |
+| 5. Interpretation of data | I have done my best to explain the cells in my Jupyter notebooks with Markdown cells and comments as necessary.
+
+Python files have also been annotated with commetns and doc strings as I have seen fit.| 
