@@ -10,8 +10,6 @@
 
     In a terminal, run `pip install -r requirements.txt`
 
-    Modules required: 
-
 1. Run the cleaning scripts in `02_cleaning/` directory
 
     To run these scripts, open a terminal and run `python {filename}`
@@ -75,7 +73,7 @@ The directory also includes data_dictionary.md, a markdown file with a data dict
 
 `03_analysis.ipynb` is a Jupyter notebook wherein I analyse my cleaned data.
 
-# Cource Requirements
+# Course Requirements
 
 These are the parts of my projects which satisfy the requirements for the Code:You / Code Louisville Data Analytics Pathway.
 
