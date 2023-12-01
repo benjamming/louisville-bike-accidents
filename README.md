@@ -1,5 +1,4 @@
 # Louisville Bike Accidents
-### louisville-bike-accidents.git
 
 This is a data project for the Code Louisville / Code:You Data Analysis Pathway, Spring 2023 Cohort
 
