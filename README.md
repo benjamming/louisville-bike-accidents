@@ -20,6 +20,7 @@
 
 1. Optional but encouraged: Enjoy a nice bike ride and be safe!
 
+# Directory and file map for this project:
 ## Source data
 ### directory: /data/raw
 
