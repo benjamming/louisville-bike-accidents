@@ -2,12 +2,19 @@
 
 ## Quick Start
 
-Create a virtual environment to install modules.
-Use pip install -r requirements.txt to install required modules.
+1. Create a virtual environment to install modules.
+
+
+1. Use pip install -r requirements.txt to install required modules.
     Modules required: 
-Run the Python files in 02_cleaning directory.
+
+1. Run the Python files in 02_cleaning directory.
+
     The files prefixed by `01` can be run in any order, but these must be run before `02_merge_accident_data.py`. 
-Open and run `03_analysis.ipynb`
+
+1. Open and run `03_analysis.ipynb` to read through my analysis process. 
+
+Optional but encouraged: Enjoy a nice bike ride and be safe!
 
 ## Source data
 ### directory: /data/raw
