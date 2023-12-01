@@ -1,17 +1,15 @@
 # Cleaning LOJIC data
 import pandas as pd
 import pyparsing
-import pytz
+from os import path
 
-from datetime import datetime, timezone
-from os import chdir
 
 # Raw data
-DATA_IN = "data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
+DATA_IN = "../../data/raw/Louisville_Metro_KY_-_Traffic_Fatalities_and_Suspected_Serious_Injuries.csv"
 # Path to write CSV of cleaned data
-DATA_OUT = "data/preclean/LOJIC_cycling_data_cleaned.csv"
+DATA_OUT = "../../data/preclean/LOJIC_cycling_data_cleaned.csv"
 
-
+assert path.exists(DATA_IN)
 
 # Drop unneeded columns
 # Select only rows which report bicycle crashes

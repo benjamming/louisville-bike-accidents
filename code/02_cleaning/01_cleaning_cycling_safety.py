@@ -2,12 +2,14 @@
 
 import pandas as pd
 import pyparsing
-import os
+from os import path
 
 import logging as log
 
-DATA_IN = "data/raw/cycling_safety_louisville.csv"
-DATA_OUT = "data/preclean/cycling_safety_louisville_cleaned.csv"
+DATA_IN = "../../data/raw/cycling_safety_louisville.csv"
+DATA_OUT = "../../data/preclean/cycling_safety_louisville_cleaned.csv"
+
+assert path.exists(DATA_IN)
 
 ### Defining groups of columns for various purposes.
 # With functions that will operate over them. 
