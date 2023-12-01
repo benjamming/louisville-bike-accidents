@@ -1,8 +1,5 @@
 # Louisville Bike Accidents
 
-![Louisvile Open Data](https://www.arcgis.com/sharing/rest/content/items/105d192e2725465fa5ff70d163ca457a/resources/hub-image-card-crop-iij0khjwg.png =250px)
-![LOJIC](https://www.lojic.org/themes/custom/lojic/logo.svg)
-
 ### louisville-bike-accidents.git
 
 This is a data project for the Code Louisville / Code:You Data Analysis Pathway, Spring 2023 Cohort
