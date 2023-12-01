@@ -1,4 +1,11 @@
-# louisville-bike-accidents
+# Louisville Bike Accidents
+### louisville-bike-accidents.git
+
+This is a data project for the Code Louisville / Code:You Data Analysis Pathway, Spring 2023 Cohort
+
+In this project, I look at bicycle accident reports in Jefferson County, Kentucky from 2010 to 2023.
+
+The goal of my project is to determine the most dangerous conditions to ride bicycle in the Louisville Metro area. I am an avid cyclist myself in this city, and I love to promote cycling here. My hope is that I can gain some insight to make everyone's bicycle rides around the city a little safer.
 
 ## Quick Start
 
