@@ -4,17 +4,23 @@
 
 1. Create a virtual environment to install modules.
 
+    In a terminal, run `python -m venv venv`
 
-1. Use pip install -r requirements.txt to install required modules.
+1. Install requirements
+
+    In a terminal, run `pip install -r requirements.txt`
+
     Modules required: 
 
-1. Run the Python files in 02_cleaning directory.
+1. Run the cleaning scripts in `02_cleaning/` directory
+
+    To run these scripts, open a terminal and run `python {filename}`
 
     The files prefixed by `01` can be run in any order, but these must be run before `02_merge_accident_data.py`. 
 
 1. Open and run `03_analysis.ipynb` to read through my analysis process. 
 
-Optional but encouraged: Enjoy a nice bike ride and be safe!
+1. Optional but encouraged: Enjoy a nice bike ride and be safe!
 
 ## Source data
 ### directory: /data/raw
@@ -67,7 +73,9 @@ The directory also includes data_dictionary.md, a markdown file with a data dict
 
 ## Analysis
 
-# Requirements
+`03_analysis.ipynb` is a Jupyter notebook wherein I analyse my cleaned data.
+
+# Cource Requirements
 
 These are the parts of my projects which satisfy the requirements for the Code:You / Code Louisville Data Analytics Pathway.
 
