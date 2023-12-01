@@ -20,7 +20,7 @@ The goal of my project is to determine the most dangerous conditions to ride bic
 
 1. Run the cleaning scripts in `02_cleaning/` directory
 
-    To run these scripts, open a terminal and navigate to the `code/02_cleaning` directory, then run `python {filename}`
+    To run these scripts, open a terminal then run `python code/02_cleaning/{filename}`
 
     The files prefixed by `01` can be run in any order, but these must be run before `02_merge_accident_data.py`. 
 
