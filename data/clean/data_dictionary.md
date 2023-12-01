@@ -11,7 +11,7 @@
 |date| pandas.Timestamp | Date and time of accident|
 |day| number | Day of month for date of accident |
 |day_of_week| string | Name of weekday for time of accident |
-|directional_analysis| string | Description of the accident in terms of the direction one vehicle hit another. |
+|directional_analysis| string | Description of accident type |
 |fatality_indicator| boolean | Did the accident result in a fatality? |
 |hit_and_run_indicator| boolean | Was the accident a hit and run? |
 |hour| number | Hour component of time of accident |
@@ -23,7 +23,7 @@
 |light_condition| string | Light condition during the accident. |
 |lighted_signal_indicator| boolean| If accident happened in an intersection, did the intersection have a traffic light? |
 |longitude| float| Longitude coordinate for accident site |
-|manner_of_collision| string | |
+|manner_of_collision| string | Desription of the accident in terms of how one vehicle struck another |
 |milepoint| number | Milepoint along roadway where accident happened |
 |minute| number | Minute component for time of accident|
 |month| number | Month component for time of accident |
