@@ -11,7 +11,7 @@
 |date| pandas.Timestamp | Date and time of accident|
 |day| number | Day of month for date of accident |
 |day_of_week| string | Name of weekday for time of accident |
-|directional_analysis| string | Description of the accident |
+|directional_analysis| string | Description of the accident in terms of the direction one vehicle hit another. |
 |fatality_indicator| boolean | Did the accident result in a fatality? |
 |hit_and_run_indicator| boolean | Was the accident a hit and run? |
 |hour| number | Hour component of time of accident |
